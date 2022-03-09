@@ -1,14 +1,16 @@
 import "./App.css";
-import Header from "./components/header/header";
+import Header from "./components/Header/Header";
+import Todos from "./components/Todos/Todos";
+import ProfileProvider from "./providers/ProfileProvider";
 
 function App() {
   return (
-    <>
+    <ProfileProvider>
       <Header />
       <main>
-        <h2>Todos</h2>
+        <Todos />
       </main>
-    </>
+    </ProfileProvider>
   );
 }
 
