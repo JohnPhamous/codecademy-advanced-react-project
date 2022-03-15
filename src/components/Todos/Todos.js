@@ -55,7 +55,7 @@ const Todos = () => {
                   title={todo.user.name}
                   aria-label={`Created by ${todo.user.name}`}
                 >
-                  {todo.user.icon}
+                  [{todo.user.icon} {todo.user.name}]
                 </span>
 
                 <span>{todo.text.toLowerCase()}</span>
