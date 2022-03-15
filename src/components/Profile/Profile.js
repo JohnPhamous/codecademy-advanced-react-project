@@ -38,10 +38,15 @@ const Profile = () => {
                 defaultValue={name}
               />
             </label>
-            <label htmlFor="username">
-              Icon
-              <input type="text" id="icon" name="icon" defaultValue={icon} />
-            </label>
+            <label htmlFor="icon">Icon</label>
+
+            <select name="icon" id="icon" defaultValue={icon}>
+              {ICON_OPTIONS.map((icon) => (
+                <option key={icon} value={icon}>
+                  {icon}
+                </option>
+              ))}
+            </select>
 
             <button type="button" onClick={toggleShowEditForm}>
               Cancel
@@ -55,3 +60,20 @@ const Profile = () => {
 };
 
 export default Profile;
+
+const ICON_OPTIONS = [
+  "🐿",
+  "🐶",
+  "🐱",
+  "🐭",
+  "🐹",
+  "🐰",
+  "🦊",
+  "🐻",
+  "🐼",
+  "🐨",
+  "🐯",
+  "🦁",
+  "🐮",
+  "🐷",
+];
