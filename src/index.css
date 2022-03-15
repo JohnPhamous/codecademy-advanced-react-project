@@ -44,3 +44,16 @@ button {
   background-color: transparent;
   color: var(--font-color);
 }
+
+input {
+  border: 4px solid var(--bg-color-inverted);
+  background: var(--secondary-color);
+  color: var(--font-color-inverted);
+  padding: 12px;
+  border-radius: 40px;
+  width: 40ch;
+}
+
+input::placeholder {
+  color: var(--font-color-inverted);
+}
