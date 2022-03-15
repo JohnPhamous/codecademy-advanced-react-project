@@ -6,4 +6,27 @@
   background-color: var(--bg-color);
   padding: 32px;
   border: 1px solid var(--secondary-color);
+  border-radius: 8px;
+}
+
+.container form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+.container label {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+.actionsContainer {
+  display: flex;
+  margin-top: 24px;
+  column-gap: 12px;
+}
+
+.actionsContainer button {
+  flex-grow: 1;
 }

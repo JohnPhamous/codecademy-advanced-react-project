@@ -10,7 +10,7 @@ const Header = React.memo(() => {
     <header className="header">
       <h2>Todos</h2>
 
-      <section>
+      <section className="actionsContainer">
         <button
           onClick={onToggleTheme}
           aria-label={`${

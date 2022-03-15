@@ -1,6 +1,7 @@
 import React, { useContext, useReducer, useState } from "react";
 import { ProfileContext } from "../../providers/ProfileProvider";
 import { generateRandomTodos } from "../../utils/utils";
+import styles from "./Todos.module.css";
 
 const Todos = () => {
   const [newTodoText, setNewTodoText] = useState("");
@@ -21,8 +22,8 @@ const Todos = () => {
   };
 
   return (
-    <>
-      <div>
+    <div className={styles.container}>
+      <section className={styles.newTodoSection}>
         <form onSubmit={onAddNewTodo}>
           <label htmlFor="newTodo">
             <input
@@ -47,52 +48,54 @@ const Todos = () => {
         >
           Add Error Todo
         </button>
-        <ol>
-          {todos.map((todo) => {
-            return (
-              <li key={todo.id}>
+      </section>
+      <ol className={styles.list}>
+        {todos.map((todo) => {
+          return (
+            <li className={styles.todo} key={todo.id}>
+              <section className={styles.author}>
                 <span
                   title={todo.user.name}
                   aria-label={`Created by ${todo.user.name}`}
                 >
-                  [{todo.user.icon} {todo.user.name}]
+                  <div>{todo.user.icon}</div>
+                  <div>{todo.user.name}</div>
                 </span>
+              </section>
+              <span>{todo.text.toLowerCase()}</span>
 
-                <span>{todo.text.toLowerCase()}</span>
-
-                <span>
-                  <button
-                    aria-label={todo.done ? "Mark as todo" : "Mark as done"}
-                    onClick={() => {
-                      dispatch({
-                        type: "update",
-                        todo: {
-                          ...todo,
-                          done: !todo.done,
-                        },
-                      });
-                    }}
-                  >
-                    {todo.done ? "✅" : "⚪️"}
-                  </button>
-                  <button
-                    aria-label="Delete task"
-                    onClick={() => {
-                      dispatch({
-                        type: "delete",
-                        id: todo.id,
-                      });
-                    }}
-                  >
-                    🗑
-                  </button>
-                </span>
-              </li>
-            );
-          })}
-        </ol>
-      </div>
-    </>
+              <div className={styles.actionsContainer}>
+                <button
+                  aria-label={todo.done ? "Mark as todo" : "Mark as done"}
+                  onClick={() => {
+                    dispatch({
+                      type: "update",
+                      todo: {
+                        ...todo,
+                        done: !todo.done,
+                      },
+                    });
+                  }}
+                >
+                  {todo.done ? "✅" : "⚪️"}
+                </button>
+                <button
+                  aria-label="Delete task"
+                  onClick={() => {
+                    dispatch({
+                      type: "delete",
+                      id: todo.id,
+                    });
+                  }}
+                >
+                  🗑
+                </button>
+              </div>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
   );
 };
 

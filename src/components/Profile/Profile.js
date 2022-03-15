@@ -13,7 +13,6 @@ const Profile = () => {
   const onSaveProfile = (e) => {
     e.preventDefault();
 
-    console.log(e);
     setCurrentUser({
       name: e.target.username.value,
       icon: e.target.icon.value,
@@ -48,10 +47,12 @@ const Profile = () => {
               ))}
             </select>
 
-            <button type="button" onClick={toggleShowEditForm}>
-              Cancel
-            </button>
-            <button type="submit">Save</button>
+            <div className={styles.actionsContainer}>
+              <button type="button" onClick={toggleShowEditForm}>
+                Cancel
+              </button>
+              <button type="submit">Save</button>
+            </div>
           </form>
         </aside>
       )}
