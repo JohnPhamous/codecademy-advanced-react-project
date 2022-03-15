@@ -1,12 +1,18 @@
 import React, { useContext, useReducer, useState } from "react";
+import { PartyContext } from "../../providers/PartyProvider";
 import { ProfileContext } from "../../providers/ProfileProvider";
 import { generateRandomTodos } from "../../utils/utils";
 import styles from "./Todos.module.css";
+import useWindowSize from "../../hooks/useWindowSize";
+import Confetti from "react-confetti";
 
 const Todos = () => {
   const [newTodoText, setNewTodoText] = useState("");
+  const [showConfetti, setShowConfetti] = useState(false);
   const [todos, dispatch] = useReducer(todosReducer, generateRandomTodos(500));
   const { currentUser } = useContext(ProfileContext);
+  const { animationsEnabled } = useContext(PartyContext);
+  const size = useWindowSize();
 
   const onAddNewTodo = (e) => {
     e.preventDefault();
@@ -23,6 +29,17 @@ const Todos = () => {
 
   return (
     <div className={styles.container}>
+      {showConfetti && (
+        <Confetti
+          width={size.width}
+          height={size.height}
+          numberOfPieces={200}
+          recycle={false}
+          onConfettiComplete={() => {
+            setShowConfetti(false);
+          }}
+        />
+      )}
       <section className={styles.newTodoSection}>
         <form onSubmit={onAddNewTodo}>
           <label htmlFor="newTodo">
@@ -68,11 +85,17 @@ const Todos = () => {
                 <button
                   aria-label={todo.done ? "Mark as todo" : "Mark as done"}
                   onClick={() => {
+                    const nextDoneState = !todo.done;
+
+                    if (nextDoneState && animationsEnabled) {
+                      setShowConfetti(true);
+                    }
+
                     dispatch({
                       type: "update",
                       todo: {
                         ...todo,
-                        done: !todo.done,
+                        done: nextDoneState,
                       },
                     });
                   }}
