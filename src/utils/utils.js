@@ -8,7 +8,7 @@ export const generateRandomTodos = (count) => {
       text: getRandomSentence(),
       done: Math.floor(Math.random() * 2) === 1,
       user: {
-        name: `User #${Math.random()}`,
+        name: RANDOM_NAMES[Math.floor(Math.random() * RANDOM_NAMES.length)],
         icon: RANDOM_ICONS[Math.floor(Math.random() * RANDOM_ICONS.length)],
       },
     };
@@ -16,6 +16,8 @@ export const generateRandomTodos = (count) => {
 };
 
 const RANDOM_ICONS = ["✈️", "🌸", "🐿", "🍣", "🐤", "🍩"];
+
+const RANDOM_NAMES = ["Lou", "Cecelia", "John", "Maria", "Sabine"];
 
 const nouns = [
   "bird",
